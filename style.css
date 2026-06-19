@@ -464,8 +464,7 @@ img  { max-width: 100%; display: block; }
 .projects-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 22px;
-  max-width: 720px;
+  gap: 16px;
 }
 
 .project-card {
@@ -485,7 +484,7 @@ img  { max-width: 100%; display: block; }
 }
 
 .project-thumb {
-  width: 200px;
+  width: 220px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
