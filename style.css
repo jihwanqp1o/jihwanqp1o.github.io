@@ -675,6 +675,13 @@ img  { max-width: 100%; display: block; }
   color: var(--text-muted);
 }
 
+.footer-link {
+  color: var(--text-muted);
+  transition: color var(--speed);
+}
+
+.footer-link:hover { color: var(--accent); }
+
 /* ============================================================
    SCROLL REVEAL
 ============================================================ */
