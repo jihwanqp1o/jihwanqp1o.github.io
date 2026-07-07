@@ -12,14 +12,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## 배포
 
 ```powershell
-$git = "C:\Program Files\Git\cmd\git.exe"
-cd "c:\Users\eldorado\OneDrive\Documents\my_homepage"
-& $git add .
-& $git commit -m "커밋 메시지"
-& $git push
+cd "C:\Users\admin\Documents\Projects\jihwanqp1o.github.io"
+git add .
+git commit -m "커밋 메시지"
+git push
 ```
-
-> `git`이 PowerShell PATH에 없으므로 반드시 전체 경로 사용.
 
 ## 파일 구조
 
@@ -45,8 +42,8 @@ cd "c:\Users\eldorado\OneDrive\Documents\my_homepage"
 
 **프로젝트 카드** (`index.html` Projects 섹션)
 - CONTAIN — Godot 탑뷰 로그라이크 공포 서바이벌. .exe 다운로드: GitHub Releases v0.1-prototype
-- SLS_core — Next.js+Supabase 교회 악보/콘티 웹앱. 라이브: https://sls-core.vercel.app/
-- SLS_core App — Capacitor 기반 Android 앱 (출시 예정)
+- Avad — Next.js+Supabase 교회 악보/콘티 웹앱. 라이브: https://avadworship.vercel.app/
+- Avad App — Capacitor 기반 Android 앱 (출시 예정)
 - 대학 활동 & 대회
 
 **연락처** — 푸터에 이메일(jihwanqp1o@gmail.com) + GitHub(@jihwanqp1o) 인라인 표시.
