@@ -12,7 +12,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## 배포
 
 ```powershell
-cd "C:\Users\admin\Documents\Projects\jihwanqp1o.github.io"
+cd "C:\Users\admin\Projects\portfolio"
 git add .
 git commit -m "커밋 메시지"
 git push
@@ -51,3 +51,10 @@ git push
 ## 스크롤 리빌 대상
 
 `script.js`의 `revealTargets` 배열에 selector 추가하면 새 섹션에도 페이드인 적용됨.
+
+## 노션 연동 (프로젝트 카드)
+
+- 프로젝트 카드 원본은 노션 DB "포트폴리오 프로젝트"(ID `cc84b497364143a99eabee9cc53a1fed`)입니다. `노출` 체크된 항목만 `정렬` 순으로 `index.html`의 `PROJECTS:START` ~ `PROJECTS:END` 사이에 생성됩니다.
+- 생성 스크립트: `scripts/build-portfolio.mjs` (외부 의존성 없음, Node 20 이상).
+- 워크플로: `.github/workflows/build-portfolio.yml` (수동 실행 `workflow_dispatch`). 필요한 시크릿은 `NOTION_TOKEN` 하나이며, 노션 인테그레이션을 해당 DB에 공유해야 합니다.
+- `index.html`의 프로젝트 카드 부분은 직접 고치지 말고 노션에서 수정하십시오. 다음 빌드 때 덮어써집니다.
