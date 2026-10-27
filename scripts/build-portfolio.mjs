@@ -9,8 +9,8 @@ const INDEX_PATH = fileURLToPath(new URL("../index.html", import.meta.url));
 const START = "<!-- PROJECTS:START -->";
 const END = "<!-- PROJECTS:END -->";
 
-const EMOJI = { Game: "🎮", Web: "🌐", App: "📱", Activity: "🏆" };
 const THUMB = { Game: "game", Web: "web", App: "app", Activity: "etc" };
+const STATUS_CLASS = { 완성: "done", "진행 중": "wip", 프로토타입: "proto", 중단: "stop" };
 
 export function escapeHtml(text) {
   return String(text ?? "")
@@ -53,30 +53,34 @@ export function flattenPage(page) {
   return out;
 }
 
-export function renderCard(item) {
+export function renderCard(item, index) {
   const category = item["분류"] || "Game";
   const status = item["상태"];
+  const no = String(index + 1).padStart(2, "0");
   const tech = (item["기술 스택"] ?? [])
     .map((t) => `<span>${escapeHtml(t)}</span>`)
     .join("");
   const links = [];
   if (item["링크"]) {
-    links.push(`<a href="${escapeHtml(item["링크"])}" target="_blank" rel="noopener" class="plink plink-accent">바로가기 →</a>`);
+    links.push(`<a href="${escapeHtml(item["링크"])}" target="_blank" rel="noopener" class="plink plink-accent">사이트 열기</a>`);
   }
   if (item["저장소"]) {
     links.push(`<a href="${escapeHtml(item["저장소"])}" target="_blank" rel="noopener" class="plink">GitHub</a>`);
   }
-  if (status) {
-    links.push(`<span class="plink" style="margin-left:auto;color:var(--text-muted);font-size:.8rem">${escapeHtml(status)}</span>`);
-  }
+  const statusTag = status
+    ? `<span class="status status-${STATUS_CLASS[status] ?? "proto"}">${escapeHtml(status)}</span>`
+    : "";
   return `
         <article class="project-card">
           <div class="project-thumb ${THUMB[category] ?? "etc"}">
+            <span class="project-no">No.${no}</span>
             <span class="project-tag">${escapeHtml(category)}</span>
-            <span class="project-emoji" aria-hidden="true">${EMOJI[category] ?? "📁"}</span>
           </div>
           <div class="project-body">
-            <h3 class="project-title">${escapeHtml(item["이름"])}</h3>
+            <div class="project-head">
+              <h3 class="project-title">${escapeHtml(item["이름"])}</h3>
+              ${statusTag}
+            </div>
             <p class="project-desc">${escapeHtml(item["한줄 소개"])}</p>
             <div class="project-tech">${tech}</div>
             <div class="project-links">${links.join("\n              ")}</div>
@@ -85,7 +89,7 @@ export function renderCard(item) {
 }
 
 export function renderSection(items) {
-  return items.map(renderCard).join("\n");
+  return items.map((item, i) => renderCard(item, i)).join("\n");
 }
 
 async function queryPublishedRows(token) {
